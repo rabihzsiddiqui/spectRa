@@ -1,27 +1,102 @@
+"use client";
+
+import { useState, useMemo } from "react";
+import ColorPicker from "@/components/color-input/ColorPicker";
+import ContrastRatio from "@/components/contrast/ContrastRatio";
+import WcagBadge from "@/components/contrast/WcagBadge";
+import TextPreview from "@/components/text-preview/TextPreview";
+import CvdGrid from "@/components/simulation/CvdGrid";
+import PaletteSection from "@/components/palette/PaletteSection";
+import { hexToRgb } from "@/lib/color-math";
+import { getContrastResult } from "@/lib/contrast";
+
+// Starting with white on near-black (the default spectRa palette)
+const DEFAULT_FG = "#fafafa";
+const DEFAULT_BG = "#09090b";
+
 export default function Home() {
+  const [fg, setFg] = useState(DEFAULT_FG);
+  const [bg, setBg] = useState(DEFAULT_BG);
+
+  // Recalculate contrast only when colors change
+  const result = useMemo(() => {
+    try {
+      return getContrastResult(hexToRgb(fg), hexToRgb(bg));
+    } catch {
+      return null;
+    }
+  }, [fg, bg]);
+
   return (
-    <section className="mx-auto flex min-h-[calc(100vh-3.5rem)] max-w-5xl flex-col items-start justify-center px-6 pt-14">
-      <p className="mb-4 text-xs font-medium uppercase tracking-widest text-emerald-500">
-        color accessibility
-      </p>
-      <h1 className="mb-6 text-5xl font-bold leading-[1.1] tracking-tight text-white md:text-7xl">
-        see color the way
-        <br />
-        your users do.
-      </h1>
-      <p className="mb-10 max-w-xl text-base leading-relaxed text-neutral-400">
-        analyze contrast ratios, simulate color vision deficiencies, and build
-        palettes that work for everyone. grounded in vision science, built for
-        the browser.
-      </p>
-      <div className="flex flex-wrap gap-3">
-        <button className="rounded-full bg-emerald-600 px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-emerald-500 hover:scale-105">
-          get started
-        </button>
-        <button className="rounded-full border border-neutral-700 bg-neutral-800 px-6 py-3 text-sm font-medium text-neutral-300 transition-all duration-200 hover:bg-neutral-700">
-          learn more
-        </button>
+    <div className="mx-auto max-w-3xl space-y-6 px-6 pb-16 pt-24">
+      {/* Page header */}
+      <div>
+        <h1 className="text-2xl font-bold text-white">contrast checker</h1>
+        <p className="mt-1 text-sm text-neutral-400">
+          pick two colors, see if they meet wcag standards.
+        </p>
       </div>
-    </section>
+
+      {/* Color input panel */}
+      <ColorPicker
+        fg={fg}
+        bg={bg}
+        onFgChange={setFg}
+        onBgChange={setBg}
+      />
+
+      {/* Contrast results */}
+      {result && (
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-[auto_1fr]">
+          <ContrastRatio result={result} />
+
+          {/* WCAG badge panel */}
+          <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/50 p-6">
+            <span className="text-xs font-medium uppercase tracking-widest text-neutral-500">
+              wcag 2.1
+            </span>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <WcagBadge
+                label="AA"
+                sublabel="normal text (4.5:1)"
+                passes={result.aa.normal}
+              />
+              <WcagBadge
+                label="AA"
+                sublabel="large text (3:1)"
+                passes={result.aa.large}
+              />
+              <WcagBadge
+                label="AAA"
+                sublabel="normal text (7:1)"
+                passes={result.aaa.normal}
+              />
+              <WcagBadge
+                label="AAA"
+                sublabel="large text (4.5:1)"
+                passes={result.aaa.large}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Live text preview */}
+      <TextPreview fg={fg} bg={bg} />
+
+      {/* CVD simulation grid */}
+      <div className="space-y-4">
+        <div>
+          <h2 className="text-lg font-semibold text-white">vision simulation</h2>
+          <p className="mt-1 text-sm text-neutral-400">
+            how your colors look across different types of color vision.
+          </p>
+        </div>
+        <CvdGrid fg={fg} bg={bg} />
+      </div>
+
+      {/* Palette analysis — collapsed by default */}
+      <PaletteSection />
+    </div>
   );
 }
