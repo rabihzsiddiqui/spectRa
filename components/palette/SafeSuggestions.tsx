@@ -31,7 +31,7 @@ export default function SafeSuggestions({ targetHex, targetIndex, otherHex, onAp
 
       {suggestions.length === 0 ? (
         <p className="text-xs text-neutral-600">
-          no alternatives found in the sRGB gamut — try adjusting the palette manually.
+          no alternatives found. try adjusting the palette manually.
         </p>
       ) : (
         <div className="grid gap-3 sm:grid-cols-3">

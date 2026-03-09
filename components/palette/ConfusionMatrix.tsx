@@ -65,7 +65,7 @@ function MatrixCell({ pair, isHovered, onEnter, onLeave }: CellProps) {
       className={`flex h-12 w-12 cursor-default items-center justify-center rounded-lg transition-colors duration-150 ${CELL_BG[status]} ${isHovered ? "ring-1 ring-white/20" : ""}`}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      title={`ΔE ${deltaE} — ${STATUS_LABEL[status]}`}
+      title={`ΔE ${deltaE}: ${STATUS_LABEL[status]}`}
     >
       <span className={`font-mono text-xs font-medium tabular-nums ${CELL_TEXT[status]}`}>
         {Math.round(deltaE)}
@@ -137,7 +137,7 @@ function HoverDetail({ colors, i, j, pair }: DetailProps) {
 function Legend() {
   return (
     <div className="flex flex-wrap items-center gap-4 text-xs text-neutral-500">
-      <span className="font-medium text-neutral-400">ΔE threshold:</span>
+      <span className="font-medium text-neutral-400">color difference:</span>
       <span className="flex items-center gap-1.5">
         <span className="inline-block h-3 w-3 rounded-sm bg-emerald-500/30" />
         safe (≥ 20)

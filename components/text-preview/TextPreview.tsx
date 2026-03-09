@@ -57,9 +57,9 @@ export default function TextPreview({ fg, bg }: Props) {
 
       {/* Size labels */}
       <div className="flex gap-6 border-t border-neutral-700/50 px-6 py-3">
-        <span className="text-xs text-neutral-600">24px — heading</span>
-        <span className="text-xs text-neutral-600">16px — body</span>
-        <span className="text-xs text-neutral-600">12px — caption</span>
+        <span className="text-xs text-neutral-600">24px · heading</span>
+        <span className="text-xs text-neutral-600">16px · body</span>
+        <span className="text-xs text-neutral-600">12px · caption</span>
       </div>
     </div>
   );

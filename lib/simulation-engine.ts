@@ -57,13 +57,13 @@ export const CVD_META: Record<
   SimulationType,
   { label: string; description: string; isBaseline: boolean }
 > = {
-  normal:       { label: "normal vision",  description: "baseline — trichromatic",        isBaseline: true  },
-  deuteranopia: { label: "deuteranopia",   description: "no M cones — ~1% of males",      isBaseline: false },
-  deuteranomaly:{ label: "deuteranomaly",  description: "weak M cones — ~6% of males",    isBaseline: false },
-  protanopia:   { label: "protanopia",     description: "no L cones — ~1% of males",      isBaseline: false },
-  protanomaly:  { label: "protanomaly",    description: "weak L cones — ~1% of males",    isBaseline: false },
-  tritanopia:   { label: "tritanopia",     description: "no S cones — ~0.01%, all sexes", isBaseline: false },
-  tritanomaly:  { label: "tritanomaly",    description: "weak S cones — ~0.01%, rare",    isBaseline: false },
+  normal:       { label: "normal vision",  description: "how most people see colors",                       isBaseline: true  },
+  deuteranopia: { label: "deuteranopia",   description: "red-green color blind (green type), ~1% of males", isBaseline: false },
+  deuteranomaly:{ label: "deuteranomaly",  description: "reduced red-green sensitivity, ~6% of males",      isBaseline: false },
+  protanopia:   { label: "protanopia",     description: "red-green color blind (red type), ~1% of males",   isBaseline: false },
+  protanomaly:  { label: "protanomaly",    description: "reduced red sensitivity, ~1% of males",            isBaseline: false },
+  tritanopia:   { label: "tritanopia",     description: "blue-yellow color blind, ~0.01%, any sex",         isBaseline: false },
+  tritanomaly:  { label: "tritanomaly",    description: "reduced blue-yellow sensitivity, ~0.01%, rare",    isBaseline: false },
 };
 
 /**

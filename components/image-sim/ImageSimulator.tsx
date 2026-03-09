@@ -245,7 +245,7 @@ export default function ImageSimulator() {
         <div>
           <h2 className="text-lg font-semibold text-white">see through my eyes</h2>
           <p className="mt-0.5 text-sm text-neutral-400">
-            upload any image to see how it looks with color vision deficiency.
+            upload any image to see how it looks with different types of color blindness.
           </p>
         </div>
         <ChevronIcon expanded={isExpanded} />
@@ -285,7 +285,7 @@ export default function ImageSimulator() {
               <div className="text-center">
                 <p className="text-sm text-neutral-300">drag & drop or click to upload</p>
                 <p className="mt-0.5 text-xs text-neutral-600">
-                  processed entirely in your browser — nothing is uploaded
+                  processed entirely in your browser. nothing is uploaded.
                 </p>
               </div>
               <input
@@ -303,7 +303,7 @@ export default function ImageSimulator() {
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
                 {/* CVD type */}
                 <div className="flex items-center gap-2">
-                  <label className="text-xs text-neutral-500">cvd type</label>
+                  <label className="text-xs text-neutral-500">vision type</label>
                   <select
                     value={cvdType}
                     onChange={(e) => setCvdType(e.target.value as CvdValue)}

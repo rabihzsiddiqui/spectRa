@@ -47,7 +47,7 @@ export default function Home() {
           spectRa.
         </h1>
         <p className="mt-5 max-w-md text-base text-neutral-400 leading-relaxed">
-          color accessibility tools for designers and developers. wcag contrast, cvd simulation, palette analysis.
+          check if your colors are readable by everyone. contrast ratios, color blindness simulation, and palette testing.
         </p>
         <a
           href="#tool"
@@ -76,27 +76,27 @@ export default function Home() {
           {/* WCAG badge panel */}
           <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/50 p-6">
             <span className="text-xs font-medium uppercase tracking-widest text-neutral-500">
-              wcag 2.1
+              accessibility standards
             </span>
             <div className="mt-4 grid grid-cols-2 gap-3">
               <WcagBadge
                 label="AA"
-                sublabel="normal text (4.5:1)"
+                sublabel="body text (min 4.5:1)"
                 passes={result.aa.normal}
               />
               <WcagBadge
                 label="AA"
-                sublabel="large text (3:1)"
+                sublabel="headings (min 3:1)"
                 passes={result.aa.large}
               />
               <WcagBadge
                 label="AAA"
-                sublabel="normal text (7:1)"
+                sublabel="body text (min 7:1)"
                 passes={result.aaa.normal}
               />
               <WcagBadge
                 label="AAA"
-                sublabel="large text (4.5:1)"
+                sublabel="headings (min 4.5:1)"
                 passes={result.aaa.large}
               />
             </div>
@@ -110,9 +110,9 @@ export default function Home() {
       {/* CVD simulation grid */}
       <div className="space-y-4">
         <div>
-          <h2 className="text-lg font-semibold text-white">vision simulation</h2>
+          <h2 className="text-lg font-semibold text-white">color blindness simulation</h2>
           <p className="mt-1 text-sm text-neutral-400">
-            how your colors look across different types of color vision.
+            see how your colors appear to people with different types of color vision.
           </p>
         </div>
         <CvdGrid fg={fg} bg={bg} />

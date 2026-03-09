@@ -106,7 +106,7 @@ export default function PaletteSection() {
             <div className="space-y-6 border-t border-neutral-700/50 pt-6">
               <div>
                 <p className="mb-4 text-xs font-medium uppercase tracking-widest text-neutral-500">
-                  confusion matrix
+                  color confusion map
                 </p>
                 <ConfusionMatrix analysis={analysis} onApply={handleApply} />
               </div>
