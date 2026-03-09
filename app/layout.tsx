@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "spectRa — color accessibility, grounded in vision science",
+  title: "spectRa - color accessibility, grounded in vision science",
   description:
     "analyze color contrast, simulate color vision deficiencies, and build accessible palettes. browser-native, no uploads, no tracking.",
 };
