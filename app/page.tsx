@@ -30,14 +30,35 @@ export default function Home() {
   }, [fg, bg]);
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 px-6 pb-16 pt-24">
-      {/* Page header */}
-      <div>
-        <h1 className="text-2xl font-bold text-white">contrast checker</h1>
-        <p className="mt-1 text-sm text-neutral-400">
-          pick two colors, see if they meet wcag standards.
+    <div>
+      {/* Centered hero */}
+      <div className="flex flex-col items-center justify-center px-6 pb-16 pt-28 text-center">
+        <div className="mb-4 flex flex-wrap justify-center gap-2">
+          {["open source", "no uploads", "browser-based"].map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-neutral-700/60 px-3 py-1 text-xs text-neutral-400"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <h1 className="bg-gradient-to-r from-red-500 to-emerald-400 bg-clip-text text-6xl font-bold tracking-tight text-transparent md:text-8xl">
+          spectRa.
+        </h1>
+        <p className="mt-5 max-w-md text-base text-neutral-400 leading-relaxed">
+          color accessibility tools for designers and developers. wcag contrast, cvd simulation, palette analysis.
         </p>
+        <a
+          href="#tool"
+          className="mt-8 rounded-full bg-emerald-600 px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-emerald-500 hover:scale-105"
+        >
+          get started
+        </a>
       </div>
+
+      {/* Tool content */}
+      <div id="tool" className="mx-auto max-w-3xl space-y-6 px-6 pb-16">
 
       {/* Color input panel */}
       <ColorPicker
@@ -105,6 +126,7 @@ export default function Home() {
 
       {/* Educational content — collapsed by default */}
       <ScienceOverlay />
+    </div>
     </div>
   );
 }
