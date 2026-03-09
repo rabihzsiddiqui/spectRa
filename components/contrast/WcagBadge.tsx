@@ -40,14 +40,17 @@ const CrossIcon = () => (
 export default function WcagBadge({ label, sublabel, passes }: Props) {
   return (
     <div
+      role="status"
+      aria-label={`${label} ${sublabel}: ${passes ? "pass" : "fail"}`}
       className={`flex flex-col gap-2 rounded-xl border p-4 transition-all duration-300 ${
         passes
           ? "border-emerald-500/20 bg-emerald-500/10"
           : "border-rose-500/20 bg-rose-500/10"
       }`}
     >
-      {/* Pass/fail icon */}
+      {/* Pass/fail icon — hidden from screen readers (aria-label covers it) */}
       <span
+        aria-hidden="true"
         className={`transition-colors duration-300 ${
           passes ? "text-emerald-400" : "text-rose-400"
         }`}
@@ -56,7 +59,7 @@ export default function WcagBadge({ label, sublabel, passes }: Props) {
       </span>
 
       {/* Labels */}
-      <div>
+      <div aria-hidden="true">
         <p
           className={`text-xs font-bold transition-colors duration-300 ${
             passes ? "text-emerald-400" : "text-rose-400"

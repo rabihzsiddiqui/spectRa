@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PaletteInput from "./PaletteInput";
 import ConfusionMatrix from "./ConfusionMatrix";
+import PaletteExport from "./PaletteExport";
 import { analyzePalette } from "@/lib/palette-analyzer";
 import type { PaletteAnalysis } from "@/lib/palette-analyzer";
 
@@ -33,6 +34,21 @@ export default function PaletteSection() {
   const [colors, setColors] = useState<string[]>(DEFAULT_COLORS);
   const [analysis, setAnalysis] = useState<PaletteAnalysis | null>(null);
 
+  // Read ?palette=hex1,hex2,... from URL on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get("palette");
+    if (!raw) return;
+    const parsed = raw
+      .split(",")
+      .map((h) => `#${h}`)
+      .filter((h) => /^#[0-9a-fA-F]{6}$/.test(h));
+    if (parsed.length >= 2 && parsed.length <= 8) {
+      setColors(parsed);
+      setIsExpanded(true);
+    }
+  }, []);
+
   function handleColorsChange(next: string[]) {
     setColors(next);
     // Invalidate previous analysis when the palette changes
@@ -44,6 +60,19 @@ export default function PaletteSection() {
       setAnalysis(analyzePalette(colors));
     } catch {
       // Invalid colors — silently skip
+    }
+  }
+
+  // Called when the user applies a SafeSuggestions replacement
+  function handleApply(index: number, hex: string) {
+    const next = [...colors];
+    next[index] = hex;
+    setColors(next);
+    // Re-run analysis immediately so the matrix updates
+    try {
+      setAnalysis(analyzePalette(next));
+    } catch {
+      setAnalysis(null);
     }
   }
 
@@ -74,11 +103,16 @@ export default function PaletteSection() {
           />
 
           {analysis && (
-            <div className="border-t border-neutral-700/50 pt-6">
-              <p className="mb-4 text-xs font-medium uppercase tracking-widest text-neutral-500">
-                confusion matrix
-              </p>
-              <ConfusionMatrix analysis={analysis} />
+            <div className="space-y-6 border-t border-neutral-700/50 pt-6">
+              <div>
+                <p className="mb-4 text-xs font-medium uppercase tracking-widest text-neutral-500">
+                  confusion matrix
+                </p>
+                <ConfusionMatrix analysis={analysis} onApply={handleApply} />
+              </div>
+              <div className="border-t border-neutral-700/50 pt-4">
+                <PaletteExport colors={colors} analysis={analysis} />
+              </div>
             </div>
           )}
         </div>

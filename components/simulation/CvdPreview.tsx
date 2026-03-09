@@ -11,7 +11,8 @@ export default function CvdPreview({ type, pair }: Props) {
   const { fgHex, bgHex, contrastRatio, passesAA } = pair;
 
   return (
-    <div
+    <article
+      aria-label={`${meta.label}: contrast ${contrastRatio.toFixed(2)}:1, WCAG AA ${passesAA ? "pass" : "fail"}`}
       className={`flex flex-col overflow-hidden rounded-xl border bg-neutral-800/50 transition-colors duration-300 ${
         meta.isBaseline
           ? "border-neutral-600/50"
@@ -59,12 +60,13 @@ export default function CvdPreview({ type, pair }: Props) {
         </div>
       </div>
 
-      {/* Mini text preview rendered in simulated colors */}
-      <div className="mx-4 mb-4 flex-1 rounded-lg px-4 py-3" style={{ backgroundColor: bgHex }}>
-        <p
-          className="text-xl font-bold leading-tight"
-          style={{ color: fgHex }}
-        >
+      {/* Mini text preview rendered in simulated colors — decorative */}
+      <div
+        aria-hidden="true"
+        className="mx-4 mb-4 flex-1 rounded-lg px-4 py-3"
+        style={{ backgroundColor: bgHex }}
+      >
+        <p className="text-xl font-bold leading-tight" style={{ color: fgHex }}>
           Aa
         </p>
         <p className="mt-1 text-xs leading-relaxed" style={{ color: fgHex }}>
@@ -78,15 +80,17 @@ export default function CvdPreview({ type, pair }: Props) {
           {contrastRatio.toFixed(2)}:1
         </span>
         <span
+          aria-label={`WCAG AA: ${passesAA ? "pass" : "fail"}`}
           className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors duration-300 ${
             passesAA
               ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
               : "border-rose-500/20 bg-rose-500/10 text-rose-400"
           }`}
         >
-          {passesAA ? "✓ AA" : "✗ AA"}
+          <span aria-hidden="true">{passesAA ? "✓" : "✗"}</span>
+          {" AA"}
         </span>
       </div>
-    </div>
+    </article>
   );
 }

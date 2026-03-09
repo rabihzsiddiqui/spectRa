@@ -64,7 +64,7 @@ function fLab(t: number): number {
  * a*: green (negative) to red (positive)
  * b*: blue (negative) to yellow (positive)
  */
-function rgbToLab(rgb: RGB): [number, number, number] {
+export function rgbToLab(rgb: RGB): [number, number, number] {
   const lin = rgbToLinear(rgb);
 
   // Linear sRGB → CIE XYZ (D65) using the IEC sRGB primaries matrix
@@ -99,7 +99,7 @@ const POW25_7 = 6103515625; // 25^7, precomputed
  *   - Hue-angle dependency in dark/light and neutral regions (T factor)
  *   - Blue-purple hue rotation artifact (RT rotation term)
  */
-function deltaE2000(
+export function deltaE2000(
   [L1, a1, b1]: [number, number, number],
   [L2, a2, b2]: [number, number, number],
 ): number {

@@ -7,6 +7,8 @@ import WcagBadge from "@/components/contrast/WcagBadge";
 import TextPreview from "@/components/text-preview/TextPreview";
 import CvdGrid from "@/components/simulation/CvdGrid";
 import PaletteSection from "@/components/palette/PaletteSection";
+import ImageSimulator from "@/components/image-sim/ImageSimulator";
+import ScienceOverlay from "@/components/education/ScienceOverlay";
 import { hexToRgb } from "@/lib/color-math";
 import { getContrastResult } from "@/lib/contrast";
 
@@ -97,6 +99,12 @@ export default function Home() {
 
       {/* Palette analysis — collapsed by default */}
       <PaletteSection />
+
+      {/* Image CVD simulator — collapsed by default */}
+      <ImageSimulator />
+
+      {/* Educational content — collapsed by default */}
+      <ScienceOverlay />
     </div>
   );
 }

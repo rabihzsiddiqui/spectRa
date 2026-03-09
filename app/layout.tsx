@@ -18,6 +18,18 @@ export const metadata: Metadata = {
   title: "spectRa - color accessibility, grounded in vision science",
   description:
     "analyze color contrast, simulate color vision deficiencies, and build accessible palettes. browser-native, no uploads, no tracking.",
+  openGraph: {
+    title: "spectRa - color accessibility, grounded in vision science",
+    description:
+      "analyze color contrast, simulate color vision deficiencies, and build accessible palettes. browser-native, no uploads, no tracking.",
+    siteName: "spectRa",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "spectRa",
+    description: "color accessibility, grounded in vision science",
+  },
 };
 
 export default function RootLayout({

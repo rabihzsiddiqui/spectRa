@@ -5,6 +5,7 @@ import { CVDType } from "@/types";
 import { GRID_TYPES, CVD_META } from "@/lib/simulation-engine";
 import type { SimulationType } from "@/lib/simulation-engine";
 import type { PaletteAnalysis, PairResult, Distinguishability } from "@/lib/palette-analyzer";
+import SafeSuggestions from "./SafeSuggestions";
 
 // ---------------------------------------------------------------------------
 // Styling maps
@@ -158,9 +159,10 @@ function Legend() {
 // ---------------------------------------------------------------------------
 interface Props {
   analysis: PaletteAnalysis;
+  onApply?: (index: number, hex: string) => void;
 }
 
-export default function ConfusionMatrix({ analysis }: Props) {
+export default function ConfusionMatrix({ analysis, onApply }: Props) {
   const [activeType, setActiveType] = useState<SimulationType>("normal");
   const [hoveredCell, setHoveredCell] = useState<{ i: number; j: number } | null>(null);
 
@@ -243,15 +245,25 @@ export default function ConfusionMatrix({ analysis }: Props) {
         </div>
       </div>
 
-      {/* Hover detail panel */}
-      <div className="min-h-[4.5rem]">
+      {/* Hover detail + suggestions */}
+      <div className="space-y-4">
         {hoveredPair && hoveredCell ? (
-          <HoverDetail
-            colors={colors}
-            i={hoveredCell.i}
-            j={hoveredCell.j}
-            pair={hoveredPair}
-          />
+          <>
+            <HoverDetail
+              colors={colors}
+              i={hoveredCell.i}
+              j={hoveredCell.j}
+              pair={hoveredPair}
+            />
+            {hoveredPair.status === "confusable" && onApply && (
+              <SafeSuggestions
+                targetHex={colors[hoveredCell.i]}
+                targetIndex={hoveredCell.i}
+                otherHex={colors[hoveredCell.j]}
+                onApply={onApply}
+              />
+            )}
+          </>
         ) : (
           <Legend />
         )}
