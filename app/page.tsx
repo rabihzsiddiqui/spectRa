@@ -78,6 +78,10 @@ export default function Home() {
             <span className="text-xs font-medium uppercase tracking-widest text-neutral-500">
               accessibility standards
             </span>
+            <p className="mt-2 text-xs leading-relaxed text-neutral-600">
+              AA is what most websites aim for. AAA is stricter, for high-stakes or public content.
+              headings get a lower threshold because larger text is easier to read at lower contrast.
+            </p>
             <div className="mt-4 grid grid-cols-2 gap-3">
               <WcagBadge
                 label="AA"
@@ -112,7 +116,7 @@ export default function Home() {
         <div>
           <h2 className="text-lg font-semibold text-white">color blindness simulation</h2>
           <p className="mt-1 text-sm text-neutral-400">
-            see how your colors appear to people with different types of color vision.
+            each card shows how your colors appear to someone with that type of color vision. the contrast ratio and pass/fail badge update to reflect what they actually see.
           </p>
         </div>
         <CvdGrid fg={fg} bg={bg} />

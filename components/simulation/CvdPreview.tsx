@@ -28,7 +28,7 @@ export default function CvdPreview({ type, pair }: Props) {
             <p className="truncate text-sm font-semibold text-white">
               {meta.label}
             </p>
-            <p className="mt-0.5 text-xs text-neutral-500">
+            <p className="mt-0.5 text-xs leading-relaxed text-neutral-500">
               {meta.description}
             </p>
           </div>

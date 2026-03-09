@@ -57,13 +57,13 @@ export const CVD_META: Record<
   SimulationType,
   { label: string; description: string; isBaseline: boolean }
 > = {
-  normal:       { label: "normal vision",  description: "how most people see colors",                       isBaseline: true  },
-  deuteranopia: { label: "deuteranopia",   description: "red-green color blind (green type), ~1% of males", isBaseline: false },
-  deuteranomaly:{ label: "deuteranomaly",  description: "reduced red-green sensitivity, ~6% of males",      isBaseline: false },
-  protanopia:   { label: "protanopia",     description: "red-green color blind (red type), ~1% of males",   isBaseline: false },
-  protanomaly:  { label: "protanomaly",    description: "reduced red sensitivity, ~1% of males",            isBaseline: false },
-  tritanopia:   { label: "tritanopia",     description: "blue-yellow color blind, ~0.01%, any sex",         isBaseline: false },
-  tritanomaly:  { label: "tritanomaly",    description: "reduced blue-yellow sensitivity, ~0.01%, rare",    isBaseline: false },
+  normal:       { label: "normal vision",  description: "baseline. how most people see colors",                                    isBaseline: true  },
+  deuteranopia: { label: "deuteranopia",   description: "missing green receptors. reds and greens look very similar. ~1% of males", isBaseline: false },
+  deuteranomaly:{ label: "deuteranomaly",  description: "weakened green receptors. reds and greens are harder to tell apart. ~6% of males", isBaseline: false },
+  protanopia:   { label: "protanopia",     description: "missing red receptors. reds appear dark or nearly black. ~1% of males",    isBaseline: false },
+  protanomaly:  { label: "protanomaly",    description: "weakened red receptors. reds look muted, warm colors shift toward yellow. ~1% of males", isBaseline: false },
+  tritanopia:   { label: "tritanopia",     description: "missing blue receptors. blues and greens look similar, yellows become pinkish. ~0.01%", isBaseline: false },
+  tritanomaly:  { label: "tritanomaly",    description: "weakened blue receptors. subtle blue-yellow confusion. ~0.01%, rare",      isBaseline: false },
 };
 
 /**
