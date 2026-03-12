@@ -94,7 +94,7 @@ function ColorWell({ label, value, onChange }: ColorWellProps) {
       {/* Color swatch — clicking opens the native color picker */}
       <button
         onClick={() => nativeRef.current?.click()}
-        className="h-12 w-full cursor-pointer rounded-xl border border-neutral-700 transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 sm:h-20"
+        className="h-20 w-full cursor-pointer rounded-xl border border-neutral-700 transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
         style={{ backgroundColor: value }}
         aria-label={`Pick ${label} color`}
       />
@@ -174,35 +174,55 @@ export default function ColorPicker({
 
   return (
     <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/50 p-4 sm:p-6">
-      {/* Three-column layout: fg well | swap button | bg well */}
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+      {/* Mobile: stacked layout. Desktop: three-column side-by-side */}
+      <div className="flex flex-col gap-3 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-4">
         <ColorWell label="foreground" value={fg} onChange={onFgChange} />
 
-        {/* Swap button */}
-        <button
-          onClick={handleSwap}
-          className="rounded-full border border-neutral-700 bg-neutral-800 p-2.5 text-neutral-400 transition-all hover:border-neutral-600 hover:bg-neutral-700 hover:text-white active:scale-95"
-          title="swap colors"
-          aria-label="Swap foreground and background"
-        >
-          {/* Arrow-left-right icon */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+        {/* Swap button — vertical arrows on mobile, horizontal on desktop */}
+        <div className="flex justify-center">
+          <button
+            onClick={handleSwap}
+            className="rounded-full border border-neutral-700 bg-neutral-800 p-2.5 text-neutral-400 transition-all hover:border-neutral-600 hover:bg-neutral-700 hover:text-white active:scale-95"
+            title="swap colors"
+            aria-label="Swap foreground and background"
           >
-            <path d="M8 3 4 7l4 4" />
-            <path d="M4 7h16" />
-            <path d="m16 21 4-4-4-4" />
-            <path d="M20 17H4" />
-          </svg>
-        </button>
+            {/* Arrow-up-down on mobile, arrow-left-right on desktop */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="block sm:hidden"
+            >
+              <path d="M3 8 7 4l4 4" />
+              <path d="M7 4v16" />
+              <path d="m21 16-4 4-4-4" />
+              <path d="M17 20V4" />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="hidden sm:block"
+            >
+              <path d="M8 3 4 7l4 4" />
+              <path d="M4 7h16" />
+              <path d="m16 21 4-4-4-4" />
+              <path d="M20 17H4" />
+            </svg>
+          </button>
+        </div>
 
         <ColorWell label="background" value={bg} onChange={onBgChange} />
       </div>
