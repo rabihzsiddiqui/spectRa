@@ -94,7 +94,7 @@ function ColorWell({ label, value, onChange }: ColorWellProps) {
       {/* Color swatch — clicking opens the native color picker */}
       <button
         onClick={() => nativeRef.current?.click()}
-        className="h-20 w-full cursor-pointer rounded-xl border border-neutral-700 transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+        className="h-12 w-full cursor-pointer rounded-xl border border-neutral-700 transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 sm:h-20"
         style={{ backgroundColor: value }}
         aria-label={`Pick ${label} color`}
       />
@@ -173,7 +173,7 @@ export default function ColorPicker({
   }
 
   return (
-    <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/50 p-6">
+    <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/50 p-4 sm:p-6">
       {/* Three-column layout: fg well | swap button | bg well */}
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
         <ColorWell label="foreground" value={fg} onChange={onFgChange} />
