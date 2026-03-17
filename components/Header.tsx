@@ -21,9 +21,9 @@ export default function Header() {
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         <Link
           href="/"
-          className="text-base font-semibold text-white tracking-tight"
+          className="text-xl font-semibold text-white tracking-tight"
         >
-          spectRa<span className="inline-block w-[4px] h-[4px] ml-[1.5px] align-baseline bg-emerald-500" />
+          spectRa<span className="inline-block w-[3px] h-[3px] ml-[1.5px] align-baseline bg-emerald-500" />
         </Link>
         <nav className="flex items-center gap-6">
           <Link
