@@ -44,7 +44,7 @@ export default function Home() {
           ))}
         </div>
         <h1 className="text-6xl font-bold tracking-tight md:text-8xl">
-          <span className="bg-gradient-to-r from-red-500 to-emerald-400 bg-clip-text text-transparent">spectRa</span><span className="inline-block w-[0.12em] h-[0.12em] bg-emerald-500 ml-[0.04em] align-middle mb-[0.1em]" />
+          <span className="bg-gradient-to-r from-red-500 to-emerald-400 bg-clip-text text-transparent">spectRa</span><span className="inline-block w-[4px] h-[4px] ml-[1.5px] align-baseline bg-emerald-500" />
         </h1>
         <p className="mt-5 max-w-md text-base text-neutral-400 leading-relaxed">
           check if your colors are readable by everyone. contrast ratios, color blindness simulation, and palette testing.

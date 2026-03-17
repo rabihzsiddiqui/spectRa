@@ -23,7 +23,7 @@ export default function Header() {
           href="/"
           className="text-base font-semibold text-white tracking-tight"
         >
-          spectRa<span className="inline-block w-[6px] h-[6px] bg-emerald-500 ml-[2px] align-middle mb-[2px]" />
+          spectRa<span className="inline-block w-[4px] h-[4px] ml-[1.5px] align-baseline bg-emerald-500" />
         </Link>
         <nav className="flex items-center gap-6">
           <Link
